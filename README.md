@@ -1,5 +1,4 @@
-# meta-labs-backend-service
-Backend logic for building our app to build more apps
+# meta-labs
 
 ## suggested dev tooling
 - Docker - installation instructions `https://docs.docker.com/v17.09/engine/installation/`

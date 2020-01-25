@@ -4,9 +4,10 @@
   "description": "meta-labs-backend-service",
   "main": "index.js",
   "scripts": {
-    "start": "npx knex migrate:latest && node ./src/index.js",
+    "start": "npx knex migrate:latest && node ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dbmigrate": "npx knex migrate:latest"
+    "dbmigrate": "npx knex migrate:latest",
+    "heroku-postbuild": "npm dbmigrate && cd frontend && npm i && npm run build"
   },
   "repository": {
     "type": "git",
