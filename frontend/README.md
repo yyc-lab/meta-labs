@@ -2,8 +2,7 @@
 Frontend design for building our app to build more apps
 
 ## Setup
-git clone **[repo](https://github.com/yyc-lab/meta-labs-frontend-service)**  
-``cd meta-labs-frontend-service``  
+``cd frontend``  
 run ``npm install`` in the terminal  
 ``npm start``  
 

@@ -5,18 +5,21 @@ const bodyParser    = require("body-parser");
 const cookieParser  = require('cookie-parser');
 const morgan        = require("morgan");
 const app           = express();
-const datahelpers   = require('./DataHelpers/data-helpers');
+const datahelpers   = require('./backend/DataHelpers/data-helpers');
 const passport      = require('passport');
-const passportSetup = require('./config/passport-setup')(datahelpers.user_helpers);
+const passportSetup = require('./backend/config/passport-setup')(datahelpers.user_helpers);
 const jwt = require('jsonwebtoken');
 
+const path = require('path');
 const cors          = require('cors');
-const authRoutes    = require('./routes/auth-routes');
-const usersRoutes   = require('./routes/user');
-const projectRoutes = require("./routes/projects.js")(datahelpers);
+const authRoutes    = require('./backend/routes/auth-routes');
+const usersRoutes   = require('./backend/routes/user');
+const projectRoutes = require("./backend/routes/projects.js")(datahelpers);
 
 // TODO: move this function from this file?
 function middleware(req, res, next) {
+  if (!req.path.startsWith('/api')) { next(); }
+  
   let user;
 
   if (req.headers["authorization"]) {
@@ -35,15 +38,18 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static("public"));
+app.use(express.static("frontend/build"));
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/auth', authRoutes);
-app.use("/projects", projectRoutes);
+app.use('/api/auth', authRoutes);
+app.use("/api/projects", projectRoutes);
 app.use(middleware)
-app.use('/user', usersRoutes);
+app.use('/api/user', usersRoutes);
 
+app.get('*', (req, res) =>{
+  res.sendFile(path.join(__dirname+'/frontend/build/index.html'));
+});
 
 const server = app.listen(process.env.PORT || PORT, () => {
 
