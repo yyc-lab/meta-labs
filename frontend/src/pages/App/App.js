@@ -1,7 +1,7 @@
 import React from 'react';
-import { Layout } from '../../components/Layout'
 import { Dashboard } from '../Dashboard'
 import { NotFound } from '../NotFound'
+import { NewProject } from '../NewProject'
 import { Projects } from '../Projects'
 import { Login } from '../Login'
 import 'antd/dist/antd.css'
@@ -15,14 +15,13 @@ import {
 function App() {
   return (
     <Router>
-      <Layout>
-        <Switch>
-          <Route exact path="/" component={Dashboard}/>
-          <Route exact path="/login" component={Login}/>
-          <Route exact path="/projects" component={Projects}/>
-          <Route component={NotFound}/>
-        </Switch>
-      </Layout>
+      <Switch>
+        <Route exact path="/dashboard" component={Dashboard}/>
+        <Route exact path="/login" component={Login}/>
+        <Route exact path="/new" component={NewProject}/>
+        <Route exact path="/projects" component={Projects}/>
+        <Route component={NotFound}/>
+      </Switch>
     </Router>
   )
 }
