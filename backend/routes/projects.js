@@ -19,7 +19,20 @@ const getPostCallback = function(res){
   return postCallback
 }
 
-
+const createProjectObj = (input) => {
+  const {name, description, repos, time_line, tech_stack, documents} = input
+  if(!name || ! description || !repos || !time_line || !tech_stack){
+    return null;
+  }
+  return {
+    name,
+    description,
+    repos,
+    time_line,
+    tech_stack,
+    documents
+  }
+}
 //==============================================
 //         PROJECT ROUTES
 //==============================================
@@ -39,11 +52,17 @@ module.exports = function(DataHelpers) {
   })
 
   projectRoutes.post('/', function(req,res){
-   /* DataHelpers.projects_helpers.addProject(getPostCallback(res), 
-    {"name":"something cool",
-    "description":"better than the previous",
-    "stack":"node.js,react.js,psql"})*/
-    res.status(201).send('ok');
+    if(req.body){
+      const project = createProjectObj(req.body)
+      if(project){
+        DataHelpers.projects_helpers.addProject(getPostCallback(res), project)
+      }else{
+        res.status(401).send('invalid request');
+      }
+    }
+    else{
+      res.status(401).send('invalid request');
+    }
 
   })  
   return projectRoutes;
