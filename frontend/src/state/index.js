@@ -3,7 +3,7 @@ import {setGlobal} from 'reactn'
 setGlobal({
   token: '',
   user: null,
-  projects: ['Christian', 'Hafiz'], // This is a test
+  projects: null,
   tasks: [],
   currentProject: null
 })
