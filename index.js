@@ -44,8 +44,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use('/api/auth', authRoutes);
 app.use("/api/projects", projectRoutes);
-app.use(middleware)
-app.use('/api/user', usersRoutes);
+app.use("/api/user", middleware, usersRoutes);
 
 app.get('*', (req, res) =>{
   res.sendFile(path.join(__dirname+'/frontend/build/index.html'));
