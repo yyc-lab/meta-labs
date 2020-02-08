@@ -5,6 +5,8 @@ export {
   Card, 
   Col,
   Layout,
+  Progress,
+  Radio,
   Row, 
   Table, 
 } from 'antd'
