@@ -1,0 +1,11 @@
+frontend:
+    - frontend/**/*
+
+backend:
+    - backend/**/*
+
+database:
+    - migrations/**/*
+
+other:
+    - ./*
