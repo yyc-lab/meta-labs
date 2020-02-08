@@ -1,13 +1,18 @@
 import React from 'react';
 import { useGlobal } from '../../state';
-import { Button } from '../Button';
+import { Layout } from '../../external_components'
 
+const LayoutHeader = Layout.Header;
 export const Header = () => {
   const [user] = useGlobal('user');
-  if (!user) return null;
+  // if (!user) return null; // TODO: Add it back in once connected with login
   return (
-    <header className="App-header">
-      <Button />
-    </header>
+    <LayoutHeader className="App-header">
+      <h3 className="title"> YYCLabs </h3>
+      <div className="user"> 
+        username: 
+        <button> Signout </button>
+      </div>
+    </LayoutHeader>
   )
 }
