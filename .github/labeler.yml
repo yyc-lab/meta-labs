@@ -7,5 +7,8 @@ backend:
 database:
     - migrations/**/*
 
-other:
+repo:
     - ./*
+
+github:
+    .github/**/*
