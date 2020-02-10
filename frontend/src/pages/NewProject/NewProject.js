@@ -18,6 +18,24 @@ export const NewProject = () => {
           <Breadcrumb.Item>Commits</Breadcrumb.Item>
         </Breadcrumb>
         </Form.Item>
+        <Form.Item>
+        <Card title="ABOUT PROJECT" style={{ width: 300 }}>
+          <p style={{fontWeight: 'bold'}}>Add Repos</p>
+          <p style={{fontWeight: 'bold'}}>Add Timeline</p>
+          <p style={{fontWeight: 'bold'}}>Add Description</p>
+          <Input/>
+          <p style={{fontWeight: 'bold'}}>Add Tech Stack</p>
+          <Input/>          
+        </Card>
+        </Form.Item>
+        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+          <Form.Item>
+            <Button type="primary">Cancel</Button>
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary">Submit</Button>
+          </Form.Item>
+        </div>
       </Form>
     </div>
   )
