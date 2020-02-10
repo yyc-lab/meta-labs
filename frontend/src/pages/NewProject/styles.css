@@ -11,3 +11,21 @@
   border-radius: 2em;
 }
 
+.projectPagination {
+  padding: 0.4em 0.1em;
+  border-radius: 40px;
+  width: fit-content;
+  margin: 0px;
+  -webkit-box-shadow: 0px -2px 11px -1px rgba(161,161,161,1);
+  -moz-box-shadow: 0px -2px 11px -1px rgba(161,161,161,1);
+  box-shadow: 0px -2px 11px -1px rgba(161,161,161,1);
+  margin-left: -3em;
+}
+
+.projectPagination span {
+  padding: 0.6em 0.6em 0.6em 0em;
+  border-radius: 40px;
+  text-transform: uppercase;
+  color: black;
+  margin: 0em;
+}
