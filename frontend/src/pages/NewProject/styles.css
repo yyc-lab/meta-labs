@@ -1,0 +1,13 @@
+.projectName {
+  padding-top: 3em;
+}
+
+.projectName h1 {
+  color: darkgray;
+  margin-left: -1.5em;
+  border: 1px solid darkgray;
+  width: fit-content;
+  padding: 0 2em;
+  border-radius: 2em;
+}
+

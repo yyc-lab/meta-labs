@@ -2,6 +2,7 @@ import React from 'react'
 
 import 'antd/dist/antd.css';
 import { Form, Input, Button, Card, Breadcrumb } from 'antd';
+import './styles.css';
 
 export const NewProject = () => {
   return (
