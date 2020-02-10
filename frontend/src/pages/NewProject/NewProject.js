@@ -10,6 +10,14 @@ export const NewProject = () => {
         <Form.Item className="projectName">
           <h1> Project Name </h1>
         </Form.Item>
+        <Form.Item>
+        <Breadcrumb separator=" " className="projectPagination">
+          <Breadcrumb.Item className="active">Overview</Breadcrumb.Item>
+          <Breadcrumb.Item>Tasks</Breadcrumb.Item>
+          <Breadcrumb.Item>Pull requests</Breadcrumb.Item>
+          <Breadcrumb.Item>Commits</Breadcrumb.Item>
+        </Breadcrumb>
+        </Form.Item>
       </Form>
     </div>
   )
