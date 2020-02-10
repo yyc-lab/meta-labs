@@ -1,17 +1,14 @@
 import React from 'react'
 
 import 'antd/dist/antd.css';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Card, Breadcrumb } from 'antd';
 
 export const NewProject = () => {
   return (
-    <div>
-      <Form>
-        <Form.Item label="Project Name">
-          <Input placeholder="input placeholder" />
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary">Submit</Button>
+    <div style={{ width: 'fit-content', margin: '0 auto' }}>
+      <Form >
+        <Form.Item className="projectName">
+          <h1> Project Name </h1>
         </Form.Item>
       </Form>
     </div>
