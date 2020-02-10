@@ -30,6 +30,10 @@
   margin: 0em;
 }
 
+.projectPagination span.active {
+  background-color: rgb(37, 147, 252);
+  color: white;
+}
 .ant-breadcrumb-separator {
   display: none;
 }
