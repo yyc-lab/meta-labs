@@ -5,6 +5,7 @@ export {
   Button,
   Card, 
   Col,
+  Icon,
   Layout,
   Progress,
   Radio,
