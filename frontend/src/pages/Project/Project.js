@@ -7,7 +7,6 @@ import { Documents } from '../../components/Documents'
 export const Project = () => {
   return (
     <div style={{ margin: 50 }}>
-      Project Page
       <h2>Project Title</h2>
       <MenuBar />
       <div style={{ display: 'flex' }}>
