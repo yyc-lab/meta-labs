@@ -5,32 +5,33 @@ import { Redirect } from 'react-router'
 import { useState, useEffect } from 'react'
 import Axios from 'axios'
 import { Card  } from '../../external_components'
+import { ProjectsPanel } from '../../components/ProjectsPanel'
 
 const backendEndpoint = 'http://localhost:3030'
 
-const renderProjects = (isLoading, projects) => {
-  const handleClick = (projectId) => {
-    return <Redirect to={`/projects${projectId}`} />
-  }
+// const renderProjects = (isLoading, projects) => {
+//   const handleClick = (projectId) => {
+//     return <Redirect to={`/projects${projectId}`} />
+//   }
 
-  if (isLoading) {
-    return "please wait until we load it for you"
-  } else if (! projects) {
-    return "No project is found"
-  } else {
-    return projects.map(project => 
-      <div>
-        <Card onClick={handleClick(project.id)}>
-          <h2>{project.name}</h2>
-          {project.repos.map(repo => <a href={repo}> GitHub </a>)}
-          <p>{project.description}</p>
-          <p>Estimated length: {project.time_line}</p>
-          <p>{project.tech_stack.join(", ")}</p>
-        </Card>
-      </div>
-    )
-  }
-}
+//   if (isLoading) {
+//     return "please wait until we load it for you"
+//   } else if (! projects) {
+//     return "No project is found"
+//   } else {
+//     return projects.map(project => 
+//       <div>
+//         <Card onClick={handleClick(project.id)}>
+//           <h2>{project.name}</h2>
+//           {project.repos.map(repo => <a href={repo}> GitHub </a>)}
+//           <p>{project.description}</p>
+//           <p>Estimated length: {project.time_line}</p>
+//           <p>{project.tech_stack.join(", ")}</p>
+//         </Card>
+//       </div>
+//     )
+//   }
+// }
 
 export const Projects = () => {
   const [global, setGlobal] = useGlobal()
@@ -44,16 +45,23 @@ export const Projects = () => {
   useEffect(() => {
     if(!global.projects) {
       Axios.get(`${backendEndpoint}/api/projects`)
-      .then((data) => {
-        setGlobal({ ...global, projects: data.projects })
+      .then((resData) => {
+        setGlobal({ ...global, projects: resData.data })
         setIsLoading(false);
-        setData(data.data);
+        setData(resData.data);
       })
       .catch((err) => {
         setErr(err);
       });
     } 
   }, []);
+
   // TODO should use Project component
-  return renderProjects(isLoading, data)
+  if (isLoading) {
+    return "please wait until we load it for you"
+  } else if (!data) {
+    return "No project is found"
+  } else {
+    return <ProjectsPanel projects={data} />
+  }
 }
