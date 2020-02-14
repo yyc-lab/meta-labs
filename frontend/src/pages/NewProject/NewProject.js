@@ -22,7 +22,9 @@ export const NewProject = () => {
         <Form.Item>
         <Card title="ABOUT PROJECT" style={{ width: 300 }}>
           <p style={{fontWeight: 'bold'}}>Add Repos</p>
+          <Input/> 
           <p style={{fontWeight: 'bold'}}>Add Timeline</p>
+          <Input/> 
           <p style={{fontWeight: 'bold'}}>Add Description</p>
           <Input/>
           <p style={{fontWeight: 'bold'}}>Add Tech Stack</p>
