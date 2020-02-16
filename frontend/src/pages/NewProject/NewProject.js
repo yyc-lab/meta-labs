@@ -1,7 +1,7 @@
 import React from 'react'
 
 import 'antd/dist/antd.css';
-import { Form, Input, Button, Card, Breadcrumb } from 'antd';
+import { Form, Input, Button, Card, Breadcrumb } from '../../external_components';
 import './styles.css';
 
 export const NewProject = () => {
