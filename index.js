@@ -1,6 +1,7 @@
 require('dotenv').config();
 const PORT          = process.env.PORT || 3030;
 const express       = require("express");
+const cors          = require('cors');
 const bodyParser    = require("body-parser");
 const cookieParser  = require('cookie-parser');
 const morgan        = require("morgan");
@@ -11,7 +12,6 @@ const passportSetup = require('./backend/config/passport-setup')(datahelpers.use
 const jwt = require('jsonwebtoken');
 
 const path = require('path');
-const cors          = require('cors');
 const authRoutes    = require('./backend/routes/auth-routes');
 const usersRoutes   = require('./backend/routes/user');
 const projectRoutes = require("./backend/routes/projects.js")(datahelpers);
