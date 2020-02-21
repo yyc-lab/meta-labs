@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { ProjectsCard } from './ProjectsCard';
+import { ProjectCard } from './ProjectCard';
 
 
-storiesOf('ProjectsCard', module)
-  .add('default', () => <ProjectsCard/>);
+storiesOf('ProjectCard', module)
+  .add('default', () => <ProjectCard/>);
