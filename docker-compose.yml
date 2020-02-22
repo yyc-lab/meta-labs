@@ -37,7 +37,35 @@ services:
       - /usr/src/server/node_modules/ # This stops it from nuking the node_modules folder when it copies over the code
       - /usr/src/server/frontend/build # This stops it from nuking the node_modules folder when it copies over the code
       - /usr/src/server/frontend/node_modules # This stops it from nuking the node_modules folder when it copies over the code
-      
+
+  webpack:
+    image: metalabs_server:latest
+    restart: always
+    stdin_open: true
+    tty: true
+    working_dir: /usr/src/server/frontend
+    depends_on:
+      - server
+    expose:
+      - '3000'
+    ports:
+      - '3000:3000'
+    command: "npm start"
+
+  storybook:
+    image: metalabs_server:latest
+    restart: always
+    stdin_open: true
+    tty: true
+    working_dir: /usr/src/server/frontend
+    depends_on:
+      - server
+    expose:
+      - '9009'
+    ports:
+      - '9009:9009'
+    command: "npm run storybook"
+
   db: # A pre-built container containing Postgres
     image: 'postgres:11-alpine'
     restart: always
