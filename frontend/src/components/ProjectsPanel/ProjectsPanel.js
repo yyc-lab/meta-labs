@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router'
-import { Card, Row, Col } from '../../external_components'
+import { Card, Row, Col, Icon } from '../../external_components'
+import { ProjectCard } from '../ProjectCard'
 
 export const ProjectsPanel = (props) => {
-  const [projectRedirect, setProjectRedirect] = useState(false)
+  const [newProjectRedirect, setnewProjectRedirect] = useState(false)
 
   const clickCreateProject = () => {
-    setProjectRedirect(true)
+    setnewProjectRedirect(true)
   }
 
-  if(projectRedirect) {
+  if(newProjectRedirect) {
     return <Redirect to="/new" />
   }
 
@@ -17,22 +18,17 @@ export const ProjectsPanel = (props) => {
     <div style={{ background: '#ECECEC', padding: '15px' }}>
       <Row gutter={16}>
         <Col span={8}>
-          <Card onClick={clickCreateProject} title="New Project" bordered={false}>
-            Card content
+          <Card style={{ height: 300, textAlign: 'center', cursor: 'pointer' }} onClick={clickCreateProject} title="New Project" bordered={false}>
+            <Icon style={{fontSize: '100px', textAlign: 'center', paddingTop: 40 }} type="plus-circle" theme="twoTone" />
           </Card>
         </Col>
-        <Col span={8}>
-          <Card title="Meta Labs Project" bordered={false}>
-            Card content
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="Other Project" bordered={false}>
-            Card content
-          </Card>
-        </Col>
+        {props.projects && props.projects.map(project => (
+          <Col key={project.id} span={8}>
+            <ProjectCard {...project}/>
+          </Col>
+        ))}
       </Row>
-      <a href="/tasks">View More</a>
+      <a href="/projects">View More</a>
     </div>
   )
 }

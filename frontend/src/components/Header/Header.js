@@ -1,13 +1,26 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Link
+} from "react-router-dom";
 import { useGlobal } from '../../state';
-import { Button } from '../Button';
+import { Layout } from '../../external_components'
 
+const LayoutHeader = Layout.Header;
 export const Header = () => {
   const [user] = useGlobal('user');
-  if (!user) return null;
+  // if (!user) return null; // TODO: Add it back in once connected with login
+  let authPart = user ?
+    (<div className="user"> {user.user_name} <button> Signout </button> </div>) :
+    <Link to="/login">Login</Link>
+
   return (
-    <header className="App-header">
-      <Button />
-    </header>
+    <LayoutHeader className="App-header">
+      <h3 className="title"> YYCLabs </h3>
+      <Link to="/projects">Projects</Link>
+      <Link to="/dashboard">Dashboard</Link>
+      {authPart}
+
+    </LayoutHeader>
   )
 }

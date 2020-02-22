@@ -1,16 +1,14 @@
 import React from 'react'
-// import { Header } from '../Header'
 import { Layout as LayoutExt } from '../../external_components'
 import { TaskList } from '../../components/TaskList'
 import { ProjectsPanel } from '../../components/ProjectsPanel'
 
-const { Header, Content } = LayoutExt
+const { Content } = LayoutExt
 
 export const Layout = (props) => {
   return (
     <div>
       <LayoutExt>
-        <Header>Header</Header>
         {props.children}
         <Content           
           style={{

@@ -1,0 +1,14 @@
+frontend:
+    - frontend/**/*
+
+backend:
+    - backend/**/*
+
+database:
+    - migrations/**/*
+
+repo:
+    - ./*
+
+github:
+    .github/**/*
