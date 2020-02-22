@@ -7,7 +7,7 @@ import Axios from 'axios'
 import { Card  } from '../../external_components'
 import { ProjectsPanel } from '../../components/ProjectsPanel'
 
-const backendEndpoint = 'http://localhost:3030'
+const backendEndpoint = 'http://localhost:3022'
 
 export const Projects = () => {
   const [global, setGlobal] = useGlobal()

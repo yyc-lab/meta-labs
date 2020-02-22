@@ -1,7 +1,7 @@
 import {setGlobal} from 'reactn'
 
 setGlobal({
-  server: 'http://localhost:3030/api/',
+  server: 'http://localhost:3022/api/',
   token: '',
   user: null,
   projects: null,
