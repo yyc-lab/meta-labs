@@ -11,7 +11,7 @@ export const Header = () => {
   const [user] = useGlobal('user');
   // if (!user) return null; // TODO: Add it back in once connected with login
   let authPart = user ?
-    (<div className="user"> username: <button> Signout </button> </div>) :
+    (<div className="user"> {user.user_name} <button> Signout </button> </div>) :
     <Link to="/login">Login</Link>
 
   return (

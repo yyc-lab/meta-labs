@@ -18,8 +18,8 @@ const projectRoutes = require("./backend/routes/projects.js")(datahelpers);
 
 // TODO: move this function from this file?
 function middleware(req, res, next) {
-  if (!req.path.startsWith('/api')) { next(); }
-  
+  if (!req.originalUrl.startsWith('/api')) { next(); }
+
   let user;
 
   if (req.headers["authorization"]) {
