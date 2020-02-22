@@ -7,6 +7,10 @@ WORKDIR ${APP_PATH}
 COPY . ${APP_PATH}
 RUN npm install
 
+WORKDIR ${APP_PATH}/frontend
+RUN npm install
+WORKDIR ${APP_PATH}
+
 # Dockerize is used to make this container wait for the db to be ready
 ENV DOCKERIZE_VERSION v0.6.1
 RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
@@ -16,4 +20,4 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 # EXPOSE opens a port to the outside world
 EXPOSE 3030
 
-CMD dockerize --wait tcp://${DB_HOST}:${DB_PORT} -timeout 2m npm start
+CMD dockerize --wait tcp://${DB_HOST}:${DB_PORT} npm start
