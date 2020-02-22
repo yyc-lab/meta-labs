@@ -2,6 +2,7 @@
   "name": "lab-core",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://server:3030",
   "dependencies": {
     "antd": "^3.26.4",
     "axios": "^0.19.2",
