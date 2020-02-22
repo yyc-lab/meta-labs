@@ -19,5 +19,3 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 
 # EXPOSE opens a port to the outside world
 EXPOSE 3030
-
-CMD dockerize --wait tcp://${DB_HOST}:${DB_PORT} npm start
