@@ -28,9 +28,13 @@ export const Projects = () => {
         setData(resData.data);
       })
       .catch((err) => {
+        console.error(err)
+        setIsLoading(false)
         setErr(err);
       });
-    } 
+    } else {
+      setIsLoading(false)
+    }
   }, []);
 
   // TODO should use Project component

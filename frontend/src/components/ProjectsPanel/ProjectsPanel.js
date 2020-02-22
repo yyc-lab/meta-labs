@@ -4,16 +4,15 @@ import { Card, Row, Col, Icon } from '../../external_components'
 import { ProjectCard } from '../ProjectCard'
 
 export const ProjectsPanel = (props) => {
-  const [projectRedirect, setProjectRedirect] = useState(false)
+  const [newProjectRedirect, setnewProjectRedirect] = useState(false)
 
   const clickCreateProject = () => {
-    setProjectRedirect(true)
+    setnewProjectRedirect(true)
   }
 
-  if(projectRedirect) {
+  if(newProjectRedirect) {
     return <Redirect to="/new" />
   }
-
 
   return (
     <div style={{ background: '#ECECEC', padding: '15px' }}>
