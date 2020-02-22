@@ -9,41 +9,18 @@ import { ProjectsPanel } from '../../components/ProjectsPanel'
 
 const backendEndpoint = 'http://localhost:3030'
 
-// const renderProjects = (isLoading, projects) => {
-//   const handleClick = (projectId) => {
-//     return <Redirect to={`/projects${projectId}`} />
-//   }
-
-//   if (isLoading) {
-//     return "please wait until we load it for you"
-//   } else if (! projects) {
-//     return "No project is found"
-//   } else {
-//     return projects.map(project => 
-//       <div>
-//         <Card onClick={handleClick(project.id)}>
-//           <h2>{project.name}</h2>
-//           {project.repos.map(repo => <a href={repo}> GitHub </a>)}
-//           <p>{project.description}</p>
-//           <p>Estimated length: {project.time_line}</p>
-//           <p>{project.tech_stack.join(", ")}</p>
-//         </Card>
-//       </div>
-//     )
-//   }
-// }
-
 export const Projects = () => {
   const [global, setGlobal] = useGlobal()
   const [isLoading, setIsLoading] = useState(true)
   const [err, setErr] = useState(null)
   const [data, setData] = useState(global.projects)
   const token = global.token
+  const projects = global.projects
 
   const login = () => Axios.get(`${backendEndpoint}/auth/github`);
 
   useEffect(() => {
-    if(!global.projects) {
+    if(!projects) {
       Axios.get(`${backendEndpoint}/api/projects`)
       .then((resData) => {
         setGlobal({ ...global, projects: resData.data })
@@ -51,9 +28,13 @@ export const Projects = () => {
         setData(resData.data);
       })
       .catch((err) => {
+        console.error(err)
+        setIsLoading(false)
         setErr(err);
       });
-    } 
+    } else {
+      setIsLoading(false)
+    }
   }, []);
 
   // TODO should use Project component
@@ -62,6 +43,6 @@ export const Projects = () => {
   } else if (!data) {
     return "No project is found"
   } else {
-    return <ProjectsPanel projects={data} />
+    return <ProjectsPanel projects={projects} />
   }
 }

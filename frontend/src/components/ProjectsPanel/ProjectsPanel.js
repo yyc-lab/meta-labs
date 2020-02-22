@@ -4,17 +4,16 @@ import { Card, Row, Col, Icon } from '../../external_components'
 import { ProjectCard } from '../ProjectCard'
 
 export const ProjectsPanel = (props) => {
-  const [projectRedirect, setProjectRedirect] = useState(false)
+  const [newProjectRedirect, setnewProjectRedirect] = useState(false)
 
   const clickCreateProject = () => {
-    setProjectRedirect(true)
+    setnewProjectRedirect(true)
   }
 
-  if(projectRedirect) {
+  if(newProjectRedirect) {
     return <Redirect to="/new" />
   }
 
-  
   return (
     <div style={{ background: '#ECECEC', padding: '15px' }}>
       <Row gutter={16}>
@@ -23,7 +22,7 @@ export const ProjectsPanel = (props) => {
             <Icon style={{fontSize: '100px', textAlign: 'center', paddingTop: 40 }} type="plus-circle" theme="twoTone" />
           </Card>
         </Col>
-        {props.projects.map(project => (
+        {props.projects && props.projects.map(project => (
           <Col key={project.id} span={8}>
             <ProjectCard {...project}/>
           </Col>

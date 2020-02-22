@@ -18,8 +18,8 @@ import {
 function App() {
   return (
     <>
-    <Header />    
     <Router>
+      <Header />
       <Switch>
         <Route exact path="/dashboard" component={Dashboard}/>
         <Route exact path="/login" component={Login}/>
