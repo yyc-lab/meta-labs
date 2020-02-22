@@ -57,13 +57,13 @@ module.exports = function(DataHelpers) {
       if(project){
         DataHelpers.projects_helpers.addProject(getPostCallback(res), project)
       }else{
-        res.status(401).send('invalid request');
+        res.status(422).send('invalid request');
       }
     }
     else{
-      res.status(401).send('invalid request');
+      res.status(422).send('invalid request');
     }
 
-  })  
+  })
   return projectRoutes;
 };
