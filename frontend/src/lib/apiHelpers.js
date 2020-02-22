@@ -30,7 +30,7 @@ export const processRequestOptions = ({
 }) => {
   crudType = crudType.toUpperCase(); // for consistency
   const method = getMethodFromCrudType(crudType)
-  let url = `http://localhost:3022/api/${resource}`;
+  let url = `/api/${resource}`;
   if (TYPES_THAT_NEED_ID.includes(crudType)) {
     if (!body.id) throw new Error('id not provided');
     url += `/${body.id}`;
