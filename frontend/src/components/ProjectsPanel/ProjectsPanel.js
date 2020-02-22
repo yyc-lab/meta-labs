@@ -14,7 +14,7 @@ export const ProjectsPanel = (props) => {
     return <Redirect to="/new" />
   }
 
-  
+
   return (
     <div style={{ background: '#ECECEC', padding: '15px' }}>
       <Row gutter={16}>
@@ -23,7 +23,7 @@ export const ProjectsPanel = (props) => {
             <Icon style={{fontSize: '100px', textAlign: 'center', paddingTop: 40 }} type="plus-circle" theme="twoTone" />
           </Card>
         </Col>
-        {props.projects.map(project => (
+        {props.projects && props.projects.map(project => (
           <Col key={project.id} span={8}>
             <ProjectCard {...project}/>
           </Col>
