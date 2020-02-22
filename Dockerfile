@@ -9,6 +9,7 @@ RUN npm install
 
 WORKDIR ${APP_PATH}/frontend
 RUN npm install
+WORKDIR ${APP_PATH}
 
 # Dockerize is used to make this container wait for the db to be ready
 ENV DOCKERIZE_VERSION v0.6.1
