@@ -1,46 +1,16 @@
-import {useGlobal} from '../../state'
-
 import React from 'react'
-import { Redirect } from 'react-router'
-import { useState, useEffect } from 'react'
-import Axios from 'axios'
-import { Card  } from '../../external_components'
 import { ProjectsPanel } from '../../components/ProjectsPanel'
+import { useApi } from '../../api/useApi';
 
-const backendEndpoint = 'http://localhost:3022'
 
 export const Projects = () => {
-  const [global, setGlobal] = useGlobal()
-  const [isLoading, setIsLoading] = useState(true)
-  const [err, setErr] = useState(null)
-  const [data, setData] = useState(global.projects)
-  const token = global.token
-  const projects = global.projects
-
-  const login = () => Axios.get(`${backendEndpoint}/auth/github`);
-
-  useEffect(() => {
-    if(!projects) {
-      Axios.get(`${backendEndpoint}/api/projects`)
-      .then((resData) => {
-        setGlobal({ ...global, projects: resData.data })
-        setIsLoading(false);
-        setData(resData.data);
-      })
-      .catch((err) => {
-        console.error(err)
-        setIsLoading(false)
-        setErr(err);
-      });
-    } else {
-      setIsLoading(false)
-    }
-  }, []);
-
-  // TODO should use Project component
+  const [requestFunc, err, isLoading, projects] = useApi({
+    crudType: 'GET_MANY',
+    resource: 'projects',
+  });
   if (isLoading) {
     return "please wait until we load it for you"
-  } else if (!data) {
+  } else if (!projects) {
     return "No project is found"
   } else {
     return <ProjectsPanel projects={projects} />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import axios from 'axios';
 import {useGlobal} from '../../state'
 import { Redirect } from 'react-router'
@@ -7,10 +7,25 @@ import 'antd/dist/antd.css';
 import { Form, Input, Button, Card, Breadcrumb } from '../../external_components';
 import './styles.css';
 
+const useFormInputs = () => {
+  const [formInputs, setInput] = useState({});
+  return [
+    formInputs,
+    // called with event object or an object with that has target.value and target.name
+    // input elements need to have name attributes
+    useCallback(({ target: { name, value }}) => {
+      return setInput(prevState => ({
+        ...prevState,
+        [name]: value
+      }))
+    })
+  ]
+}
 
 export const NewProject = () => {
   const token     = global.token
-  const [server]  = useGlobal('server')
+  const [server]  = useGlobal('server');
+  
   const [repo, setRepo] = useState("");
   const [timeLine, setTimeLine] = useState("");
   const [description, setDescription] = useState("");
