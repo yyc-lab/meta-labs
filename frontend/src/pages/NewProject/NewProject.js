@@ -1,46 +1,37 @@
 import React, { useState, useCallback } from 'react'
+import { Redirect } from 'react-router'
 import axios from 'axios';
 import {useGlobal} from '../../state'
-import { Redirect } from 'react-router'
+import useFormInputs from '../../lib/useFormInputs'
 
 import 'antd/dist/antd.css';
 import { Form, Input, Button, Card, Breadcrumb } from '../../external_components';
 import './styles.css';
 
-const useFormInputs = () => {
-  const [formInputs, setInput] = useState({});
-  return [
-    formInputs,
-    // called with event object or an object with that has target.value and target.name
-    // input elements need to have name attributes
-    useCallback(({ target: { name, value }}) => {
-      return setInput(prevState => ({
-        ...prevState,
-        [name]: value
-      }))
-    })
-  ]
-}
-
 export const NewProject = () => {
   const token     = global.token
   const [server]  = useGlobal('server');
-  
-  const [repo, setRepo] = useState("");
-  const [timeLine, setTimeLine] = useState("");
-  const [description, setDescription] = useState("");
-  const [techStack, setTechStack] = useState("");
+  const [formInputs, setInput] = useFormInputs();
+ 
+  const {
+    name,
+    repo,
+    timeLine,
+    description,
+    techStack,
+    documents
+  } = formInputs;
   const [created, setCreated] = useState(false)
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     axios.post(`${server}projects`, {
-      name: 'test',
+      name,
       description,
       repos: repo,
       time_line: timeLine,
       tech_stack: techStack,
-      documents: ''
+      documents
     },
     {headers: { authorization: `Bearer ${token}` }})
     .then(function (response) {
@@ -71,25 +62,30 @@ export const NewProject = () => {
         </Form.Item>
         <Form.Item>
         <Card title="ABOUT PROJECT" style={{ width: 300 }}>
+          <p style={{fontWeight: 'bold'}}>Name of Project</p>
+          <Input
+            value={name}
+            onChange={setInput('name')}
+          />
           <p style={{fontWeight: 'bold'}}>Add Repos</p>
           <Input
             value={repo}
-            onChange={e => setRepo(e.target.value)}
+            onChange={setInput('repo')}
           />
           <p style={{fontWeight: 'bold'}}>Add Timeline</p>
           <Input
             value={timeLine}
-            onChange={e => setTimeLine(e.target.value)}
+            onChange={setInput('timeLine')}
           />
           <p style={{fontWeight: 'bold'}}>Add Description</p>
           <Input
             value={description}
-            onChange={e => setDescription(e.target.value)}
+            onChange={setInput('description')}
           />
           <p style={{fontWeight: 'bold'}}>Add Tech Stack</p>
           <Input
             value={techStack}
-            onChange={e => setTechStack(e.target.value)}
+            onChange={setInput('techStack')}
           />
         </Card>
         </Form.Item>
