@@ -10,7 +10,7 @@ import './login.css'
 import qs from 'query-string';
 import { useGlobal } from '../../state';
 
-const backendEndpoint = 'http://localhost:3030';
+const backendEndpoint = 'http://localhost:3022';
 
 const getTokenFromQuery = () => {
   const queryValues = qs.parse(window.location.search);
