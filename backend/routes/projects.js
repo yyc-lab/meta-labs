@@ -52,6 +52,7 @@ module.exports = function(DataHelpers) {
   })
 
   projectRoutes.post('/', function(req,res){
+    console.log('body', req.body)
     if(req.body){
       const project = createProjectObj(req.body)
       if(project){

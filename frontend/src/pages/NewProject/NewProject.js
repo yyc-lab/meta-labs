@@ -1,16 +1,12 @@
-import React, { useState, useCallback } from 'react'
+import React from 'react'
 import { Redirect } from 'react-router'
-import axios from 'axios';
-import {useGlobal} from '../../state'
 import useFormInputs from '../../lib/useFormInputs'
-
-import 'antd/dist/antd.css';
 import { Form, Input, Button, Card, Breadcrumb } from '../../external_components';
 import './styles.css';
+import { useApi } from '../../api/useApi';
 
 export const NewProject = () => {
-  const token     = global.token
-  const [server]  = useGlobal('server');
+  const [requestFn, err, loading, data] = useApi();
   const [formInputs, setInput] = useFormInputs();
  
   const {
@@ -21,28 +17,24 @@ export const NewProject = () => {
     techStack,
     documents
   } = formInputs;
-  const [created, setCreated] = useState(false)
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    axios.post(`${server}projects`, {
-      name,
-      description,
-      repos: repo,
-      time_line: timeLine,
-      tech_stack: techStack,
-      documents
-    },
-    {headers: { authorization: `Bearer ${token}` }})
-    .then(function (response) {
-      setCreated(true)
-    })
-    .catch(function (error) {
-      console.log(error);
+    requestFn({
+      crudType: 'CREATE',
+      resource: 'projects',
+      body: {
+        name,
+        description,
+        repos: repo,
+        time_line: timeLine,
+        tech_stack: techStack,
+        documents
+      },
     });
   }
 
-  if(created){
+  if(data){
     return <Redirect to='/projects'/>;
   }
 

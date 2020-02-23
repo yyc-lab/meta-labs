@@ -2,7 +2,7 @@ import Axios from 'axios';
 export const CRUD_TO_METHOD = {
   GET: 'get',
   UPDATE: 'put',
-  CREATE: 'create',
+  CREATE: 'post',
   DELETE: 'delete'
 }
 
@@ -10,6 +10,7 @@ export const TYPES_THAT_NEED_ID = ['PUT', 'DELETE', 'GET_ONE'];
 
 export const makeRequest = (opts) => {
   const requestOpts = processRequestOptions(opts);
+  console.log('requestOpts :', requestOpts);
   return Axios(requestOpts)
     .then(response => {
       console.log('response :', response);
@@ -39,6 +40,6 @@ export const processRequestOptions = ({
   return {
     url,
     method,
-    body,
+    data: body,
   }
 }
