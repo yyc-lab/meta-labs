@@ -17,12 +17,13 @@ import './App.css';
 import { useGlobal } from '../../state';
 
 function App() {
-  const [global, setGlobal, user] = useGlobal();
+  const [{ user }] = useGlobal();
   return (
     <>
       <Router>
         <Header />
-        { user ? <Redirect from="/" to="/dashboard" /> : <Redirect from="/" to="/login" /> }
+        { user ? <Redirect from="/" to="/dashboard" /> : <Redirect from="/" to="/login" /> } 
+        {/* Comment above line to test to prevent redirecting upon code setting */}
         <Switch>
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/login" component={Login} />
