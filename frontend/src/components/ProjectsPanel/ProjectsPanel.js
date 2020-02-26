@@ -9,7 +9,7 @@ import './styles.css';
 
 export const ProjectsPanel = (props) => {
   const [newProjectRedirect, setnewProjectRedirect] = useState(false);
-  const [global, setGlobal, user] = useGlobal();
+  const [{ user }] = useGlobal();
 
   const { projects } = props;
 
