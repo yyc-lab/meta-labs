@@ -10,7 +10,7 @@ const getTokenFromQuery = () => {
 }
 
 export const useLogin = () => {
-  const [loading, setLoading] = useState(true) 
+  const [loading, setLoading] = useState(false) 
   const [err, setErr] = useState(null);
   const [data, setData] = useState(null);
   const [ global, setGlobal ] = useGlobal();
@@ -20,6 +20,7 @@ export const useLogin = () => {
 
   useEffect(() => {
     if(token) {
+      setLoading(true);
       setGlobal({...global, token: token})
       Axios.get(`/user/profile`, { headers: { Authorization: `Bearer ${token}` } })
       .then((data) => {
