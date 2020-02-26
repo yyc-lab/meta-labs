@@ -6,7 +6,7 @@ import { useGlobal } from '../state';
 
 const getTokenFromQuery = () => {
   const queryValues = qs.parse(window.location.search);
-  return queryValues.token;
+  return queryValues.code;
 }
 
 export const useLogin = () => {
