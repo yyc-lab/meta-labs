@@ -1,29 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useGlobal } from '../../state';
 import { Layout } from '../../external_components';
-
 const LayoutHeader = Layout.Header;
 
 export const Header = () => {
-  const [user] = useGlobal('user');
+  const [{ user }, setGlobal] = useGlobal();
+  
+  const signout = () => { 
+    setGlobal({ user: null});  
+    window.history.go(0)
+  }
+
   const loggedinHeader = user
     ? (
       <>
-        <Link to="/dashboard">Dashboard</Link>
+        <NavLink to="/dashboard">Dashboard</NavLink>
         <div className="user">
           {user.user_name}
-          <button> Signout </button>
+          <button onClick={signout}> Signout </button>
         </div>
       </>
     )
-    : <Link to="/login">Login</Link>;
+    : <NavLink to="/login">Login</NavLink>;
 
   return (
     <LayoutHeader className="App-header">
-      <a href="/" className="title"> YYCLabs </a>
-      <Link to="/projects">Projects</Link>
-      {loggedinHeader}
+       <h3 className="title"> YYCLabs </h3>
+      <NavLink to="/projects">Projects</NavLink>
+      { loggedinHeader }
     </LayoutHeader>
   );
 };
