@@ -1,3 +1,8 @@
+.newProjectForm {
+  width: fit-content;
+  margin: 0 auto;
+}
+
 .projectName {
   padding-top: 3em;
 }
@@ -9,6 +14,14 @@
   width: fit-content;
   padding: 0 2em;
   border-radius: 2em;
+}
+
+.aboutCard {
+  width: 300;
+}
+
+.projectInput {
+  font-weight: bold;
 }
 
 .projectPagination {
@@ -36,4 +49,9 @@
 }
 .ant-breadcrumb-separator {
   display: none;
+}
+
+.formButton {
+  display: flex;
+  justify-content: space-between;
 }

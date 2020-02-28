@@ -18,3 +18,8 @@
   color: #007BFF;
   line-height: 2;
 }
+
+.loadingSpinner {
+  width: max-content;
+  margin: 2em auto;
+}

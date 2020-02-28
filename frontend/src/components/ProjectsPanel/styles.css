@@ -1,0 +1,16 @@
+.projectsPanel {
+  background: #ECECEC;
+  padding: 15px;
+}
+
+.newProjectCard {
+  height: 300;
+  text-align: center;
+  cursor: pointer; 
+}
+
+.newProjectIcon {
+  font-size: 100px;
+  text-align: center;
+  padding-top: 40px; 
+}
