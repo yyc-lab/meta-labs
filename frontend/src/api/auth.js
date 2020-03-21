@@ -16,7 +16,12 @@ export const useLogin = () => {
   const [ global, setGlobal ] = useGlobal();
   const token = global.token || getTokenFromQuery();
 
-  const login = () => Axios.get(`/auth/github`);
+  const login = () => (
+    process.env.REACT_APP_GITHUB_OAUTH_URL ?
+    window.location.href = process.env.REACT_APP_GITHUB_OAUTH_URL
+    :
+    Axios.get(`/auth/github`)
+  );
 
   useEffect(() => {
     if(token) {

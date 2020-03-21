@@ -23,7 +23,8 @@ export const Login = () => {
       <div className="logo">YYC Labs</div>
       {/* Temp commented out until oauth is connected properly */}
       {/* <Button onClick={() => window.location.href=process.env.REACT_APP_GITHUB_OAUTH_URL}> */}
-      <Button onClick={() => setGlobal({ user: 'user1' })}>
+      {/* <Button onClick={() => setGlobal({ user: 'user1' })}> */}
+      <Button onClick={login}>
         Login
       </Button>
       {/* </a> */}
